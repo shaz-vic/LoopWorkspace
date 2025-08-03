@@ -309,6 +309,10 @@ jobs:
       - name: Sync clock
         run: sudo sntp -sS time.windows.com
 
+
+      - name: Update entitlement silent tones
+        run: sed -i -e 's/<string>bluetooth-central<\/string>/<string>bluetooth-central<\/string><string>audio<\/string>/g' Loop/Loop/Info.plist
+        
       # Build signed Loop IPA file
       - name: Fastlane Build & Archive
         run: bundle exec fastlane build_loop
